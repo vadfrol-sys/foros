@@ -52,13 +52,14 @@ h2{font-size:clamp(1.6rem,4vw,2.6rem);color:var(--sea);margin-bottom:.6em;text-a
   opacity:.06;
 }
 
+/* ============ HERO ============ */
 .hero{
   position:relative;
   min-height:100vh;
   display:flex;align-items:center;justify-content:center;
   text-align:center;color:#fff;
   overflow:hidden;
-  padding:40px 20px;
+  padding:60px 20px 40px;
   background:#0F3556 center/cover no-repeat;
 }
 .hero-video{
@@ -67,9 +68,9 @@ h2{font-size:clamp(1.6rem,4vw,2.6rem);color:var(--sea);margin-bottom:.6em;text-a
 }
 .hero::before{
   content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(180deg,rgba(15,53,86,.5) 0%,rgba(10,31,51,.7) 100%);
+  background:linear-gradient(180deg,rgba(15,53,86,.55) 0%,rgba(10,31,51,.75) 100%);
 }
-.hero-inner{position:relative;z-index:2;max-width:900px}
+.hero-inner{position:relative;z-index:2;max-width:900px;width:100%}
 .hero h1{
   font-size:clamp(2rem,7vw,4.5rem);
   text-shadow:4px 4px 0 rgba(0,0,0,.35);
@@ -79,10 +80,32 @@ h2{font-size:clamp(1.6rem,4vw,2.6rem);color:var(--sea);margin-bottom:.6em;text-a
 .hero p{
   font-size:clamp(1rem,2.2vw,1.4rem);
   letter-spacing:.08em;text-transform:uppercase;
-  margin-bottom:1.8em;
+  margin-bottom:1.2em;
   text-shadow:2px 2px 0 rgba(0,0,0,.35);
 }
 
+/* Виджет бронирования прямо в hero */
+.hero-widget{
+  max-width:720px;
+  margin:0 auto 1.6em;
+  background:rgba(255,255,255,.97);
+  border:4px solid #fff;
+  padding:clamp(14px,2.5vw,22px);
+  box-shadow:8px 8px 0 rgba(0,0,0,.35);
+  color:var(--ink);
+  text-align:left;
+}
+.hero-widget-label{
+  font-family:'Russo One',sans-serif;
+  color:var(--sea);
+  font-size:.85rem;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  margin-bottom:10px;
+  text-align:center;
+}
+
+/* ============ КНОПКИ ============ */
 .btn{
   display:inline-block;
   font-family:'Russo One',sans-serif;
@@ -132,15 +155,7 @@ h2{font-size:clamp(1.6rem,4vw,2.6rem);color:var(--sea);margin-bottom:.6em;text-a
   .map-pin{margin-left:0;margin-top:12px}
 }
 
-.booking{background:var(--sand)}
-.booking-widget{
-  background:#fff;
-  border:4px solid var(--sea);
-  padding:clamp(16px,3vw,32px);
-  box-shadow:10px 10px 0 var(--accent);
-  min-height:120px;
-}
-
+/* ============ ГАЛЕРЕЯ ============ */
 .gallery{background:var(--sea);color:#fff;overflow:hidden}
 .gallery h2{color:var(--sand)}
 .gallery-track-wrap{
@@ -191,6 +206,7 @@ h2{font-size:clamp(1.6rem,4vw,2.6rem);color:var(--sea);margin-bottom:.6em;text-a
   font-size:.85rem;letter-spacing:.1em;margin-top:16px;
 }
 
+/* ============ ФУТЕР ============ */
 footer{
   background:var(--ink);color:var(--sand);
   padding:48px 20px;text-align:center;
@@ -208,16 +224,13 @@ footer h3{color:#7FC3F0;margin-bottom:1em;font-size:1.4rem}
 }
 .contacts a:hover{color:#7FC3F0;border-color:#7FC3F0}
 
-/* ============ АДРЕС В ФУТЕРЕ ============ */
 .footer-address{
   margin:20px 0 20px;
   font-size:1rem;
   line-height:1.6;
   color:var(--sand);
 }
-.footer-address p{
-  margin-bottom:10px;
-}
+.footer-address p{margin-bottom:10px}
 .footer-map-link{
   display:inline-block;
   color:#7FC3F0;
@@ -231,19 +244,22 @@ footer h3{color:#7FC3F0;margin-bottom:1em;font-size:1.4rem}
 
 .copy{font-size:.85rem;opacity:.6;letter-spacing:.1em}
 
+/* ============ АДАПТИВ ============ */
 @media(max-width:768px){
-  .booking-widget{box-shadow:6px 6px 0 var(--accent)}
   .gallery-track-wrap{border-width:4px}
   .gallery-btn{width:44px;height:44px;font-size:1.1rem}
 }
 @media(max-width:480px){
-  .hero{min-height:90vh}
+  .hero{padding:40px 14px 30px}
+  .hero h1{font-size:clamp(1.6rem,8vw,2.6rem)}
+  .hero p{font-size:.9rem}
   .contacts{flex-direction:column;gap:12px}
 }
 </style>
 </head>
 <body>
 
+<!-- ========================= HERO ========================= -->
 <section class="hero">
   <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="./assets/promo-poster.jpg">
     <source src="./assets/promo.mp4" type="video/mp4">
@@ -252,7 +268,14 @@ footer h3{color:#7FC3F0;margin-bottom:1em;font-size:1.4rem}
   <div class="hero-inner">
     <h1>Апартаменты в Форосе</h1>
     <p>Море &nbsp;•&nbsp; Горы &nbsp;•&nbsp; 150 метров до пляжа</p>
-    <a href="#booking" class="btn">Забронировать</a>
+
+    <!-- ▼▼▼ ВИДЖЕТ БРОНИРОВАНИЯ ПРЯМО В HERO ▼▼▼ -->
+    <div class="hero-widget">
+      <div class="hero-widget-label">Выберите даты</div>
+      <div id="hr-widget"></div>
+    </div>
+    <!-- ▲▲▲ КОНЕЦ ВИДЖЕТА ▲▲▲ -->
+
     <a href="./objects.html" class="btn btn--secondary">Все апартаменты</a>
     <a href="#contacts" class="map-pin" aria-label="Как добраться">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -262,16 +285,7 @@ footer h3{color:#7FC3F0;margin-bottom:1em;font-size:1.4rem}
   </div>
 </section>
 
-<section class="section booking" id="booking">
-  <div class="deco-sun"></div>
-  <div class="container">
-    <h2>Выберите даты</h2>
-    <div class="booking-widget">
-      <div id="hr-widget"></div>
-    </div>
-  </div>
-</section>
-
+<!-- ========================= ГАЛЕРЕЯ ========================= -->
 <section class="section gallery" id="gallery">
   <div class="container">
     <h2>Атмосфера Фороса</h2>
@@ -288,6 +302,7 @@ footer h3{color:#7FC3F0;margin-bottom:1em;font-size:1.4rem}
   </div>
 </section>
 
+<!-- ========================= ФУТЕР ========================= -->
 <footer id="contacts">
   <div class="container">
     <h3>Свяжитесь с нами</h3>
@@ -310,6 +325,7 @@ footer h3{color:#7FC3F0;margin-bottom:1em;font-size:1.4rem}
   </div>
 </footer>
 
+<!-- ========================= HOMERESERVE WIDGET ========================= -->
 <script type="module" src="https://homereserve.ru/widget.js"></script>
 <script type="module">
   try {
@@ -321,9 +337,11 @@ footer h3{color:#7FC3F0;margin-bottom:1em;font-size:1.4rem}
   }
 </script>
 
+<!-- ========================= СКРИПТЫ САЙТА ========================= -->
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
+/* ============ ГАЛЕРЕЯ (nginx autoindex, случайный порядок) ============ */
 (function(){
   const GALLERY_URL = './assets/gallery/';
   const INTERVAL = 3000;
@@ -434,23 +452,12 @@ document.getElementById('year').textContent = new Date().getFullYear();
     });
 })();
 
+/* ============ FALLBACK ДЛЯ ВИДЕО ============ */
 (function(){
   const v = document.querySelector('.hero-video');
   if(!v) return;
   v.addEventListener('error',()=>{ v.style.display='none'; });
   setTimeout(()=>{ if(v.readyState < 2) v.style.display='none'; },4000);
-})();
-
-(function(){
-  setTimeout(() => {
-    const hrWidget = document.getElementById('hr-widget');
-    const btn = document.querySelector('.hero .btn');
-    if(!hrWidget || !btn) return;
-    if(hrWidget.children.length === 0){
-      btn.setAttribute('href', '#contacts');
-      btn.textContent = 'Связаться';
-    }
-  }, 2500);
 })();
 </script>
 
