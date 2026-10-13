@@ -363,7 +363,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
       if(!Array.isArray(files)) throw new Error('Bad format');
       const photos = files
         .filter(f => f && f.type === 'file' && IMG_RE.test(f.name))
-        .map(f => ({ src: GALLERY_URL + encodeURIComponent(f.name) }));
+        .map(f => ({ src: GALLERY_URL + encodeURIComponent(f.name) }))
+        .sort(() => Math.random() - 0.5);   /* ← случайный порядок при каждой загрузке */
       buildGallery(photos);
     })
     .catch(err => {
