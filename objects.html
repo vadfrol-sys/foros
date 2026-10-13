@@ -124,7 +124,6 @@ footer h3{color:#7FC3F0;margin-bottom:1em;font-size:1.4rem}
 </head>
 <body>
 
-<!-- ========================= ВЕРХНЯЯ ПЛАШКА ========================= -->
 <section class="page-head">
   <div class="page-head-inner">
     <h1>Наши апартаменты</h1>
@@ -133,42 +132,35 @@ footer h3{color:#7FC3F0;margin-bottom:1em;font-size:1.4rem}
   </div>
 </section>
 
-<!-- ========================= СПИСОК ОБЪЕКТОВ ========================= -->
 <section class="section objects">
   <div class="deco-sun"></div>
   <div class="container">
     <h2>Доступные варианты</h2>
-
-    <!-- ▼▼▼ ВИДЖЕТ СПИСКА ОБЪЕКТОВ HOMERESERVE ▼▼▼ -->
     <div class="objects-widget">
       <div id="hr-widget"></div>
     </div>
-    <!-- ▲▲▲ КОНЕЦ ВИДЖЕТА СПИСКА ▲▲▲ -->
   </div>
 </section>
 
-<!-- ========================= ФУТЕР ========================= -->
 <footer id="contacts">
   <div class="container">
     <h3>Свяжитесь с нами</h3>
     <div class="contacts">
       <a href="tel:+79186397321">📞 +7 918 639-73-21</a>
-      <a href="https://wa.me/79186397321" target="_blank" rel="noopener">💬 WhatsApp</a>
-      <a href="https://t.me/+79186397321" target="_blank" rel="noopener">✈️ Telegram</a>
+      <a href="https://wa.me/79282010030" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a href="https://t.me/niceforos" target="_blank" rel="noopener">✈️ Telegram</a>
+      <a href="https://max.ru/u/f9LHodD0cOK8b1w-baL5k_P8nTWOhJf_ItyVdLHUlEamrqi1wuF2pNw_7hw" target="_blank" rel="noopener">🅜 MAX</a>
     </div>
     <p style="margin-bottom:16px">Форос, Крым &nbsp;•&nbsp; 150 метров до моря</p>
     <p class="copy">© <span id="year"></span> Апартаменты в Форосе</p>
   </div>
 </footer>
 
-<!-- ========================= HOMERESERVE WIDGET (СПИСОК) ========================= -->
 <script type="module" src="https://homereserve.ru/widget.js"></script>
 <script type="module">
   try {
     if (window.homereserve && window.homereserve.initWidgetList) {
       window.homereserve.initWidgetList({ token: "45yZWo4s1r" });
-    } else {
-      console.warn('HomeReserve: initWidgetList не найден');
     }
   } catch (e) {
     console.error('HomeReserve widget error:', e);
