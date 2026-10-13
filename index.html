@@ -11,7 +11,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Russo+One&display=swap" rel="stylesheet">
 
 <style>
-/* ============ ПЕРЕМЕННЫЕ ============ */
 :root{
   --sand:#F2E2C4;
   --cream:#FBF6EC;
@@ -20,8 +19,6 @@
   --olive:#7A8B5A;
   --ink:#2a1f14;
 }
-
-/* ============ БАЗА ============ */
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
@@ -31,8 +28,6 @@ body{
   line-height:1.5;
   overflow-x:hidden;
 }
-
-/* Ретро-зерно поверх всего */
 body::after{
   content:"";
   position:fixed;inset:0;
@@ -40,14 +35,12 @@ body::after{
   opacity:.06;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
-
 h1,h2,h3{font-family:'Russo One',sans-serif;letter-spacing:.02em;line-height:1.15}
 h2{font-size:clamp(1.6rem,4vw,2.6rem);color:var(--sea);margin-bottom:.6em;text-align:center}
 
 .section{padding:clamp(48px,8vw,96px) 20px;position:relative}
 .container{max-width:1200px;margin:0 auto;position:relative;z-index:1}
 
-/* Декор */
 .deco-sun{
   position:absolute;top:-60px;right:-60px;width:220px;height:220px;
   border-radius:50%;background:var(--terra);opacity:.15;z-index:0;
@@ -58,7 +51,6 @@ h2{font-size:clamp(1.6rem,4vw,2.6rem);color:var(--sea);margin-bottom:.6em;text-a
   opacity:.06;
 }
 
-/* ============ HERO ============ */
 .hero{
   position:relative;
   min-height:100vh;
@@ -99,7 +91,6 @@ h2{font-size:clamp(1.6rem,4vw,2.6rem);color:var(--sea);margin-bottom:.6em;text-a
   text-transform:uppercase;letter-spacing:.1em;
 }
 
-/* ============ КНОПКИ ============ */
 .btn{
   display:inline-block;
   font-family:'Russo One',sans-serif;
@@ -114,8 +105,14 @@ h2{font-size:clamp(1.6rem,4vw,2.6rem);color:var(--sea);margin-bottom:.6em;text-a
 }
 .btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 rgba(0,0,0,.35)}
 .btn:active{transform:translate(2px,2px);box-shadow:3px 3px 0 rgba(0,0,0,.3)}
+.btn--secondary{
+  background:var(--sea);
+  margin-left:12px;
+}
+@media(max-width:600px){
+  .btn--secondary{margin-left:0;margin-top:12px}
+}
 
-/* ============ БРОНИРОВАНИЕ ============ */
 .booking{background:var(--sand)}
 .booking-widget{
   background:#fff;
@@ -125,17 +122,6 @@ h2{font-size:clamp(1.6rem,4vw,2.6rem);color:var(--sea);margin-bottom:.6em;text-a
   min-height:120px;
 }
 
-/* ============ СПИСОК ОБЪЕКТОВ ============ */
-.objects{background:var(--cream)}
-.objects-widget{
-  background:#fff;
-  border:4px solid var(--sea);
-  padding:clamp(16px,3vw,32px);
-  box-shadow:10px 10px 0 var(--terra);
-  min-height:120px;
-}
-
-/* ============ ГАЛЕРЕЯ ============ */
 .gallery{background:var(--sea);color:#fff;overflow:hidden}
 .gallery h2{color:var(--sand)}
 .gallery-track-wrap{
@@ -192,7 +178,6 @@ h2{font-size:clamp(1.6rem,4vw,2.6rem);color:var(--sea);margin-bottom:.6em;text-a
   font-size:.85rem;letter-spacing:.1em;margin-top:16px;
 }
 
-/* ============ ФУТЕР ============ */
 footer{
   background:var(--ink);color:var(--sand);
   padding:48px 20px;text-align:center;
@@ -211,10 +196,9 @@ footer h3{color:var(--terra);margin-bottom:1em;font-size:1.4rem}
 .contacts a:hover{color:var(--terra);border-color:var(--terra)}
 .copy{font-size:.85rem;opacity:.6;letter-spacing:.1em}
 
-/* ============ АДАПТИВ ============ */
 @media(max-width:768px){
   .hero-features span{padding:6px 12px;font-size:.8rem}
-  .booking-widget,.objects-widget{box-shadow:6px 6px 0 var(--terra)}
+  .booking-widget{box-shadow:6px 6px 0 var(--terra)}
   .gallery-track-wrap{border-width:4px}
   .gallery-btn{width:44px;height:44px;font-size:1.1rem}
 }
@@ -242,10 +226,11 @@ footer h3{color:var(--terra);margin-bottom:1em;font-size:1.4rem}
       <span>Посуточно</span>
     </div>
     <a href="#booking" class="btn">Забронировать</a>
+    <a href="./objects.html" class="btn btn--secondary">Все апартаменты</a>
   </div>
 </section>
 
-<!-- ========================= БРОНИРОВАНИЕ ========================= -->
+<!-- ========================= БРОНИРОВАНИЕ (ПОИСК) ========================= -->
 <section class="section booking" id="booking">
   <div class="deco-sun"></div>
   <div class="container">
@@ -256,20 +241,6 @@ footer h3{color:var(--terra);margin-bottom:1em;font-size:1.4rem}
       <div id="hr-widget"></div>
     </div>
     <!-- ▲▲▲ КОНЕЦ ВИДЖЕТА ПОИСКА ▲▲▲ -->
-  </div>
-</section>
-
-<!-- ========================= СПИСОК ОБЪЕКТОВ ========================= -->
-<section class="section objects" id="objects">
-  <div class="deco-waves"></div>
-  <div class="container">
-    <h2>Наши апартаменты</h2>
-
-    <!-- ▼▼▼ ВИДЖЕТ СПИСКА ОБЪЕКТОВ HOMERESERVE ▼▼▼ -->
-    <div class="objects-widget">
-      <div id="hr-widget-list"></div>
-    </div>
-    <!-- ▲▲▲ КОНЕЦ ВИДЖЕТА СПИСКА ▲▲▲ -->
   </div>
 </section>
 
@@ -307,20 +278,14 @@ footer h3{color:var(--terra);margin-bottom:1em;font-size:1.4rem}
   </div>
 </footer>
 
-<!-- ========================= HOMERESERVE WIDGETS ========================= -->
+<!-- ========================= HOMERESERVE WIDGET (ПОИСК) ========================= -->
 <script type="module" src="https://homereserve.ru/widget.js"></script>
 <script type="module">
-  // type="module" выполняется ПОСЛЕ построения DOM — обёртка DOMContentLoaded не нужна
   try {
     if (window.homereserve && window.homereserve.initWidgetSearch) {
       window.homereserve.initWidgetSearch({ token: "45yZWo4s1r" });
     } else {
-      console.warn('HomeReserve: initWidgetSearch не найден — проверьте загрузку widget.js');
-    }
-    if (window.homereserve && window.homereserve.initWidgetList) {
-      window.homereserve.initWidgetList({ token: "45yZWo4s1r" });
-    } else {
-      console.warn('HomeReserve: initWidgetList не найден — проверьте загрузку widget.js');
+      console.warn('HomeReserve: initWidgetSearch не найден');
     }
   } catch (e) {
     console.error('HomeReserve widget error:', e);
@@ -329,10 +294,9 @@ footer h3{color:var(--terra);margin-bottom:1em;font-size:1.4rem}
 
 <!-- ========================= СКРИПТЫ САЙТА ========================= -->
 <script>
-/* ============ ГОД В ФУТЕРЕ ============ */
 document.getElementById('year').textContent = new Date().getFullYear();
 
-/* ============ ГАЛЕРЕЯ (только nginx autoindex, без списка) ============ */
+/* ============ ГАЛЕРЕЯ (nginx autoindex) ============ */
 (function(){
   const GALLERY_URL = './assets/gallery/';
   const INTERVAL = 3000;
@@ -350,10 +314,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   function buildGallery(photos){
     track.innerHTML = '';
     dotsWrap.innerHTML = '';
-    if(!photos.length){
-      statusEl.textContent = 'Фотографии скоро появятся';
-      return;
-    }
+    if(!photos.length){ statusEl.textContent = 'Фотографии скоро появятся'; return; }
     photos.forEach((p, i) => {
       const slide = document.createElement('div');
       slide.className = 'gallery-slide';
@@ -380,8 +341,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
     }
     dots = dotsWrap.children;
     statusEl.textContent = total + ' фото • листайте';
-    render();
-    start();
+    render(); start();
   }
 
   function render(){
@@ -432,27 +392,22 @@ document.getElementById('year').textContent = new Date().getFullYear();
     touchX = null;
   });
 
-  // Красивое имя файла: IMG_20231117_235653_845.jpg → "IMG 20231117 235653 845"
   function prettyName(name){
     return name.replace(IMG_RE, '').replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
   }
 
-  // Читаем список файлов из папки через nginx autoindex (JSON)
   fetch(GALLERY_URL, { headers: { 'Accept': 'application/json' } })
     .then(r => {
       if(!r.ok) throw new Error('HTTP ' + r.status);
       const ct = r.headers.get('content-type') || '';
-      if(!ct.includes('json')) throw new Error('nginx не отдаёт JSON — проверьте autoindex_format json');
+      if(!ct.includes('json')) throw new Error('Not JSON');
       return r.json();
     })
     .then(files => {
-      if(!Array.isArray(files)) throw new Error('Некорректный ответ от сервера');
+      if(!Array.isArray(files)) throw new Error('Bad format');
       const photos = files
         .filter(f => f && f.type === 'file' && IMG_RE.test(f.name))
-        .map(f => ({
-          src: GALLERY_URL + encodeURIComponent(f.name),
-          caption: prettyName(f.name)
-        }));
+        .map(f => ({ src: GALLERY_URL + encodeURIComponent(f.name), caption: prettyName(f.name) }));
       buildGallery(photos);
     })
     .catch(err => {
@@ -471,7 +426,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 /* ============ FALLBACK ДЛЯ КНОПКИ "ЗАБРОНИРОВАТЬ" ============ */
 (function(){
-  // Если виджет поиска не отрендерился — уводим в футер с контактами
   setTimeout(() => {
     const hrWidget = document.getElementById('hr-widget');
     const btn = document.querySelector('.hero .btn');
