@@ -105,10 +105,7 @@ h2{font-size:clamp(1.6rem,4vw,2.6rem);color:var(--sea);margin-bottom:.6em;text-a
 }
 .btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 rgba(0,0,0,.35)}
 .btn:active{transform:translate(2px,2px);box-shadow:3px 3px 0 rgba(0,0,0,.3)}
-.btn--secondary{
-  background:var(--sea);
-  margin-left:12px;
-}
+.btn--secondary{background:var(--sea);margin-left:12px}
 @media(max-width:600px){
   .btn--secondary{margin-left:0;margin-top:12px}
 }
@@ -144,12 +141,6 @@ h2{font-size:clamp(1.6rem,4vw,2.6rem);color:var(--sea);margin-bottom:.6em;text-a
 }
 .gallery-slide img{
   width:100%;height:100%;object-fit:cover;display:block;
-}
-.gallery-caption{
-  position:absolute;left:0;right:0;bottom:0;
-  padding:14px 20px;
-  background:linear-gradient(transparent,rgba(0,0,0,.75));
-  font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;
 }
 .gallery-controls{
   display:flex;justify-content:center;gap:14px;margin-top:20px;
@@ -296,7 +287,7 @@ footer h3{color:var(--terra);margin-bottom:1em;font-size:1.4rem}
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
-/* ============ ГАЛЕРЕЯ (nginx autoindex) ============ */
+/* ============ ГАЛЕРЕЯ (nginx autoindex, без подписей) ============ */
 (function(){
   const GALLERY_URL = './assets/gallery/';
   const INTERVAL = 3000;
@@ -320,15 +311,9 @@ document.getElementById('year').textContent = new Date().getFullYear();
       slide.className = 'gallery-slide';
       const img = document.createElement('img');
       img.src = p.src;
-      img.alt = p.caption || 'Фото';
+      img.alt = 'Фото апартаментов в Форосе';
       img.loading = i < 2 ? 'eager' : 'lazy';
       slide.appendChild(img);
-      if(p.caption){
-        const cap = document.createElement('div');
-        cap.className = 'gallery-caption';
-        cap.textContent = p.caption;
-        slide.appendChild(cap);
-      }
       track.appendChild(slide);
     });
     total = photos.length;
@@ -392,10 +377,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
     touchX = null;
   });
 
-  function prettyName(name){
-    return name.replace(IMG_RE, '').replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
-  }
-
   fetch(GALLERY_URL, { headers: { 'Accept': 'application/json' } })
     .then(r => {
       if(!r.ok) throw new Error('HTTP ' + r.status);
@@ -407,7 +388,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
       if(!Array.isArray(files)) throw new Error('Bad format');
       const photos = files
         .filter(f => f && f.type === 'file' && IMG_RE.test(f.name))
-        .map(f => ({ src: GALLERY_URL + encodeURIComponent(f.name), caption: prettyName(f.name) }));
+        .map(f => ({ src: GALLERY_URL + encodeURIComponent(f.name) }));
       buildGallery(photos);
     })
     .catch(err => {
